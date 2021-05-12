@@ -1,0 +1,22 @@
+version: '3'
+services:
+  cbts_blog_redirect:
+    container_name: cbts_blog_redirect
+    environment:
+      - PORT=${PORT}
+    restart: always
+    build: .
+    # ports:
+    #   - '80:5000'
+    expose:
+      - 80
+    restart: always
+#     volumes: ['./:/var/www/html']
+    environment:
+      VIRTUAL_HOST: blog.cbtseminary.org 
+      LETSENCRYPT_HOST: blog.cbtseminary.org
+      LETSENCRYPT_EMAIL: soriano@cbtseminary.org
+networks:
+  default:
+    external:
+      name: nginx-proxy
